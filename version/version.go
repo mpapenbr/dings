@@ -20,3 +20,6 @@ var GoVersion = runtime.Version()
 
 // OsArch returns the os and arch used to build the binary
 var OsArch = fmt.Sprintf("%s %s", runtime.GOOS, runtime.GOARCH)
+
+var FullVersion = fmt.Sprintf("%s Build %s (Commit %s) Go %s [%s]",
+	Version, BuildDate, GitCommit, GoVersion, OsArch)
