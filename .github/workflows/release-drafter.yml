@@ -5,11 +5,15 @@ on:
   pull_request:
     branches:
       - main
-    types: [ closed ]
+    types: [closed]
 
 jobs:
   release-drafter:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
       # Drafts release notes as Pull Requests are merged into "master"
       - uses: release-drafter/release-drafter@v5
