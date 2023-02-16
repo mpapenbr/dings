@@ -18,5 +18,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Debug
         run: |
-          echo ${{ steps.rd.outputs.id }}
-          echo ${{ steps.rd.outputs.tag }}
+          echo "id:         ${{ steps.rd.outputs.id }}"
+          echo "name:       ${{ steps.rd.outputs.name }}"
+          echo "tag:        ${{ steps.rd.outputs.tag_name }}"
+          echo "html_url:   ${{ steps.rd.outputs.html_url }}"
+          echo "upload_url: ${{ steps.rd.outputs.upload_url }}"
+          echo "body: ${{ steps.rd.outputs.body }}"
