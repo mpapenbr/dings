@@ -1,0 +1,21 @@
+name: Make release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  createRelease:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Drafts release notes as Pull Requests are merged into "master"
+      - uses: release-drafter/release-drafter@v5
+        id: rd
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Debug
+        run: |
+          echo ${{ steps.rd.outputs.id }}
+          echo ${{ steps.rd.outputs.tag }}
