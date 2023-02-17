@@ -6,6 +6,7 @@
 tmp/**
 bin/**
 coverage/**
+dist/**
 
 # Directories require atleast one file to be tracked by git.
 !tmp/.gitkeep

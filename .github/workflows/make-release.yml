@@ -24,3 +24,10 @@ jobs:
           echo "html_url:   ${{ steps.rd.outputs.html_url }}"
           echo "upload_url: ${{ steps.rd.outputs.upload_url }}"
           echo "body: ${{ steps.rd.outputs.body }}"
+
+      - name: Create tag based on release draft
+        run: |
+          git tag -a ${{ steps.rd.outputs.tag_name }} -m "Release ${{ steps.rd.outputs.tag_name }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # the release workflow will be scheduled upon this tag
