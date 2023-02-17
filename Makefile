@@ -158,6 +158,13 @@ clean-docker:
 	docker rmi -f $(IMAGE):$(VERSION)
 
 
+.PHONY: release
+release:
+	echo "Creating release $(v)"
+	git tag -a  v$(v) -m "Release v$(v)"
+	git push origin --tags
+
+
 ## :
 ##  NOTE: All docker-related commands can use `IMAGE`
 ## : and `VERSION` variables to modify the docker
