@@ -31,11 +31,11 @@ jobs:
 
       - name: prepare changlog
         run: |
-          echo ${{ steps.rd.outputs.body }} > CHANGELOG.md
+          echo ${{ steps.rd.outputs.body }} > /tmp/CHANGELOG.md
 
       - name: Release via goreleaser
         uses: goreleaser/goreleaser-action@v4
         with:
-          args: release --release-notes=CHANGELOG.md
+          args: release --release-notes=/tmp/CHANGELOG.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

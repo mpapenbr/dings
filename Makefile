@@ -162,7 +162,7 @@ clean-docker:
 release:
 	echo "Creating release $(v)"
 	git tag -a  $(v) -m "Release $(v)"
-	git push origin --tags
+	git push origin $(v)
 
 
 ## :
