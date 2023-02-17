@@ -161,7 +161,7 @@ clean-docker:
 .PHONY: release
 release:
 	echo "Creating release $(v)"
-	git tag -a  v$(v) -m "Release v$(v)"
+	git tag -a  $(v) -m "Release $(v)"
 	git push origin --tags
 
 
