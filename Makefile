@@ -50,13 +50,6 @@ local-setup:
 	echo "  >  Ensuring directory is a git repository"
 	git init &> /dev/null
 
-	echo "  >  Create Cobra CLI frame"
-	cobra-cli --config .cobra.yaml init
-
-
-
-
-
 
 # Will install missing dependencies
 .PHONY: install
@@ -128,53 +121,11 @@ run-debug:
 	go run main.go $(q)
 
 
-.PHONY: docker-gen
-## :
-## `docker-gen`: Create a production docker image for `dings`
-docker-gen:
-	echo "Building docker image \`$(IMAGE):$(VERSION)\`..."
-	docker build --rm \
-		--build-arg final_image=scratch \
-		--build-arg build_mode=production \
-		-t $(IMAGE):$(VERSION) . \
-		-f ./docker/Dockerfile
 
 
-.PHONY: docker-debug
-## `docker-debug`: Create debug-friendly docker images for `dings`
-docker-debug:
-	echo "Building docker image \`$(IMAGE):$(VERSION)\`..."
-	docker build --rm=false \
-		--build-arg final_image=golang:1.20 \
-		--build-arg build_mode=debug \
-		-t $(IMAGE)-debug:$(VERSION) . \
-		-f ./docker/Dockerfile
-
-
-.PHONY: clean-docker
-## `clean-docker`: Delete an existing docker image
-clean-docker:
-	echo "Removing docker $(IMAGE):$(VERSION)..."
-	docker rmi -f $(IMAGE):$(VERSION)
-
-
-.PHONY: release
-release:
-	echo "Creating release $(v)"
+.PHONY: release-tag
+## `release-tag`: Create a tag to trigger a release. (`make release-tag v=v0.1.0` for example)
+release-tag:
+	echo "  >  Creating release $(v)"
 	git tag -a  $(v) -m "Release $(v)"
 	git push origin $(v)
-
-
-## :
-##  NOTE: All docker-related commands can use `IMAGE`
-## : and `VERSION` variables to modify the docker
-## : image being targeted
-## :
-## : Example;
-## :     make docker-gen IMAGE=new_project VERSION=3.15
-## :
-## : Likewise, both the `run` commands can pass runtime
-## : arguments under the `q` arg
-## :
-## : Example;
-## :	`make run q="time --version"`
