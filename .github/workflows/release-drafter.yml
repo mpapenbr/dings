@@ -17,5 +17,12 @@ jobs:
     steps:
       # Drafts release notes as Pull Requests are merged into "master"
       - uses: release-drafter/release-drafter@v5
+        id: rd
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_URL: ${{ github.server_url}}/${{ github.repository}}
+
+      - name: output changelog
+        run: |
+          echo "Resolved version ${{ steps.rd.outputs.tag_name }}"
+          echo "${{ steps.rd.outputs.body }}"
