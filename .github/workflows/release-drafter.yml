@@ -21,6 +21,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_URL: ${{ github.server_url}}/${{ github.repository}}
+        with:
+          footer: ${{ github.server_url}}/${{ github.repository}}
 
       - name: output changelog
         run: |
