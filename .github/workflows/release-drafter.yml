@@ -21,9 +21,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_URL: ${{ github.server_url}}/${{ github.repository}}
-        with:
-          footer: |
-            [Detailed comparison](${{ github.server_url}}/${{ github.repository}}/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION)
+        # with:
+        #   footer: |
+        #     [Detailed comparison](${{ github.server_url}}/${{ github.repository}}/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION)
 
       - name: output changelog
         run: |
