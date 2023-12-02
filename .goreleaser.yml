@@ -56,3 +56,6 @@ snapshot:
 
 release:
   prerelease: auto
+  footer: |
+    ---
+    _Released with [GoReleaser](https://goreleaser.com)!_
