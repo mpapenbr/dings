@@ -53,29 +53,6 @@ checksum:
   name_template: "checksums.txt"
 snapshot:
   name_template: "{{ incpatch .Version }}-next"
-changelog:
-  sort: asc
-  use: github
-  groups:
-    - title: Features
-      regexp: "^.*feat[(\\w)]*!?:+.*$"
-      order: 0
-    - title: "Bug fixes"
-      regexp: "^.*fix[(\\w)]*!?:+.*$"
-      order: 1
-    - title: Others
-      order: 999
-  filters:
-    exclude:
-      - "^docs:"
-      - "^test:"
-      - "^chore"
-      - Merge pull request
-      - Merge remote-tracking branch
-      - Merge branch
-      - go mod tidy
 
 release:
-  footer: |
-    ---
-    _Released with [GoReleaser](https://goreleaser.com)!_
+  prerelease: auto
