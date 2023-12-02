@@ -7,6 +7,9 @@ on:
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -31,12 +34,12 @@ jobs:
 
       - name: prepare changlog
         run: |
-          echo "${{ steps.rd.outputs.body }}" > /tmp/CHANGELOG.md
+          echo "${{ steps.rd.outputs.body }}" > "${{ runner.temp }}/CHANGELOG.md"
 
       - name: Release via goreleaser
         uses: goreleaser/goreleaser-action@v5
         with:
-          args: release --release-notes=/tmp/CHANGELOG.md
+          args: release --release-notes="${{ runner.temp }}/CHANGELOG.md"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # Note: The standard setting for the repository doesn't allow the default GITHUB_TOKEN to be used here
