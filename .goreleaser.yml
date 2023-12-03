@@ -47,6 +47,7 @@ dockers:
       - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--label=description=Some description"
+      - "--label=maintainer=me@localhost"
 
       - "--platform=linux/amd64"
 
