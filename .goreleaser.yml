@@ -48,6 +48,8 @@ dockers:
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--platform=linux/amd64"
 
+    use: buildx
+
 docker_manifests:
   - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
     image_templates:
