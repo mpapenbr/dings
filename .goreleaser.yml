@@ -46,6 +46,8 @@ dockers:
       - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
       - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
+      - "--label=description=Some description"
+
       - "--platform=linux/amd64"
 
     use: buildx
