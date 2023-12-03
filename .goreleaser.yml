@@ -45,7 +45,7 @@ dockers:
       - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
       - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
       - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
-      - "--label=org.opencontainers.image.license=Apache-2.0"
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--platform=linux/amd64"
 
 docker_manifests:
