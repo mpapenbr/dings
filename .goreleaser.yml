@@ -42,6 +42,9 @@ dockers:
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
       - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source={{.ModulePath}}"
+      - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
+      - "--label=org.opencontainers.image.license=Apache Software License 2.0"
       - "--platform=linux/amd64"
 
 docker_manifests:
