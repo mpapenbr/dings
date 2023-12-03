@@ -41,7 +41,7 @@ dockers:
       - "--label=org.opencontainers.image.created={{.Date}}"
       - "--label=org.opencontainers.image.title={{.ProjectName}}"
       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version=v{{.Version}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
       - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
       - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
       - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
