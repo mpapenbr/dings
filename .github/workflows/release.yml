@@ -16,7 +16,7 @@ jobs:
       - name: Unshallow Fetch
         run: git fetch --prune --unshallow
 
-      - uses: actions/setup-go@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: "1.20"
 
@@ -27,7 +27,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: release-drafter/release-drafter@v5
+      - uses: release-drafter/release-drafter@v6
         id: rd
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
