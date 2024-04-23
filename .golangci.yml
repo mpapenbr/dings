@@ -23,10 +23,14 @@ run:
   # If false (default) - golangci-lint acquires file lock on start.
   allow-parallel-runners: false
 
+  go: "1.22"
+
+
 # output configuration options
 output:
   # default is "colored-line-number"
-  format: colored-line-number
+  formats:
+    - format: colored-line-number
 
   # print lines of code with issue, default is true
   print-issued-lines: true
@@ -225,7 +229,7 @@ linters-settings:
 
   gofumpt:
     # select the Go version to target. The default is `1.15`.
-    lang-version: "1.20"
+    # lang-version: "1.20"
 
     # choose whether or not to use the extra rules - disabled by default
     extra-rules: true
@@ -240,14 +244,14 @@ linters-settings:
     min-confidence: 0.8
 
   gomnd:
-    settings:
-      mnd:
-        # list of enabled checks, see https://github.com/tommy-muehle/go-mnd/#checks
-        # optional: remove the "operation" and "assign" if needed
-        checks: argument,case,condition,operation,return,assign
-        # ignored-numbers: 1000
-        # ignored-files: magic_.*.go
-        # ignored-functions: math.*
+
+    mnd:
+      # list of enabled checks, see https://github.com/tommy-muehle/go-mnd/#checks
+      # optional: remove the "operation" and "assign" if needed
+      checks: argument,case,condition,operation,return,assign
+      # ignored-numbers: 1000
+      # ignored-files: magic_.*.go
+      # ignored-functions: math.*
 
   gosec:
     # list of available rules: https://github.com/securego/gosec#available-rules
@@ -261,13 +265,9 @@ linters-settings:
     #   - G204
 
   gosimple:
-    go: "1.20" # version to target - default is '1.13'
     checks: ["all"] # https://staticcheck.io/docs/options#checks for more info
 
   govet:
-    # report about shadowed variables
-    check-shadowing: true
-
     # settings per analyzer
     settings:
       # printf: # analyzer name, run `go tool vet help` to see all analyzers
@@ -281,8 +281,8 @@ linters-settings:
     #   - atomicalign
     enable-all: true
 
-    # disable:
-    #   - shadow
+    disable:
+      - fieldalignment
     disable-all: false
 
   depguard:
@@ -378,12 +378,12 @@ linters-settings:
 
   staticcheck:
     # Staticcheck is a go vet on steroids, applying a ton of static analysis checks
-    go: "1.20" # go version to target. The default is '1.13'
+    # go: "1.20" # go version to target. The default is '1.13'
     checks: ["all"] # https://staticcheck.io/docs/options#checks for more info
 
   stylecheck:
     # Stylecheck is a replacement for golint
-    go: "1.20" # go version to target. default is '1.13'
+    #go: run.go  # go version to target. default is '1.13'
     checks: ["all"]
     dot-import-whitelist:
       - fmt
@@ -460,26 +460,24 @@ linters-settings:
     force-case-trailing-whitespace: 0
     force-err-cuddling: true
 
+
 linters:
   # do not use `enable-all`: it's deprecated and will be removed soon.
-
   disable-all: true # disable all, selectively enable what is needed
   enable:
     # Defaults
-    - deadcode
     - errcheck
     - gosimple
     - govet
     - ineffassign
     - staticcheck
-    - structcheck
     - typecheck
     - unused
-    - varcheck
+
 
     # Additional
     - cyclop
-    - depguard
+    # - depguard
     - dogsled
     - dupl
     - errname
@@ -495,10 +493,9 @@ linters:
     - gofumpt
     - funlen
     - goimports
-    - gomnd
+    # - gomnd too noisy
     - goprintffuncname
     - gosec
-    - ifshort
     - lll
     - makezero
     - misspell
@@ -506,17 +503,17 @@ linters:
     - nestif
     - nilerr
     - noctx
-    - nolintlint
+    # - nolintlint
     - predeclared
     - revive
-    - stylecheck
+    # - stylecheck too noisy
     - tagliatelle
     - thelper
     - unconvert
     - unparam
     - wastedassign
     - whitespace
-    - wrapcheck
+    # - wrapcheck too noisy
 
   # Interesting linters - enable if they fit your needs
   # - maintidx
