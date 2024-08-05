@@ -56,11 +56,23 @@ archives:
 #   - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
 #     image_templates:
 #       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
+sboms:
+  - artifacts: archive
 kos:
   - repository: "ghcr.io/mpapenbr/dings"
     tags:
-      - "{{ .Version }}"
+      - "{{ .Tag }}"
       - latest
+    labels:
+      org.opencontainers.image.created: "{{ .Date }}"
+      org.opencontainers.image.title: "{{ .ProjectName }}"
+      org.opencontainers.image.revision: "{{ .FullCommit }}"
+      org.opencontainers.image.version: "{{ .Version }}"
+      org.opencontainers.image.source: "https://{{ .ModulePath }}"
+      org.opencontainers.image.url: "https://{{ .ModulePath }}"
+      org.opencontainers.image.description: "Dummy package for GHA tests"
+      description: "Some description"
+      maintainer: "me@localhost"
     bare: true
     preserve_import_paths: false
 
