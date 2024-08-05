@@ -8,6 +8,10 @@ before:
     - go mod tidy
     # you may remove this if you don't need go generate
     - go generate ./...
+
+# Whether to enable the size reporting or not.
+report_sizes: true
+
 builds:
   - env:
       - CGO_ENABLED=0
@@ -73,6 +77,8 @@ kos:
       org.opencontainers.image.description: "Dummy package for GHA tests"
       description: "Some description"
       maintainer: "me@localhost"
+    annotations:
+      org.opencontainers.image.description: "Dummy package for GHA tests from annotations"
     bare: true
     preserve_import_paths: false
 
