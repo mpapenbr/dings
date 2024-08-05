@@ -39,52 +39,70 @@ archives:
       - goos: windows
         format: zip
 
-# dockers:
-#   - image_templates:
-#       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
-#     build_flag_templates:
-#       - "--pull"
-#       - "--label=org.opencontainers.image.created={{.Date}}"
-#       - "--label=org.opencontainers.image.title={{.ProjectName}}"
-#       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-#       - "--label=org.opencontainers.image.version={{.Version}}"
-#       - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
-#       - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
-#       - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
-#       - "--label=org.opencontainers.image.licenses=Apache-2.0"
-#       - "--label=description=Some description"
-#       - "--label=maintainer=me@localhost"
-#     use: buildx
+dockers:
+  - image_templates:
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}-amd64"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
+      - "--label=description=Some description"
+      - "--label=maintainer=me@localhost"
+      - "--platform=linux/amd64"
+    use: buildx
+  - image_templates:
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}-arm64"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
+      - "--label=description=Some description"
+      - "--label=maintainer=me@localhost"
+      - "--platform=linux/arm64"
+    use: buildx
+    goarch: arm64
 
-# docker_manifests:
-#   - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
-#     image_templates:
-#       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
+docker_manifests:
+  - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
+    image_templates:
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}-amd64"
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}-arm64"
 sboms:
   - artifacts: archive
-kos:
-  - repository: "ghcr.io/mpapenbr/dings"
-    tags:
-      - "{{ .Tag }}"
-      - latest
-    labels:
-      org.opencontainers.image.created: "{{ .Date }}"
-      org.opencontainers.image.title: "{{ .ProjectName }}"
-      org.opencontainers.image.revision: "{{ .FullCommit }}"
-      org.opencontainers.image.version: "{{ .Version }}"
-      org.opencontainers.image.source: "https://{{ .ModulePath }}"
-      org.opencontainers.image.url: "https://{{ .ModulePath }}"
-      org.opencontainers.image.description: "Dummy package for GHA tests"
-      description: "Some description"
-      maintainer: "me@localhost"
-    annotations:
-      org.opencontainers.image.description: "Dummy package for GHA tests from annotations"
-    bare: true
-    preserve_import_paths: false
+# kos:
+#   - repository: "ghcr.io/mpapenbr/dings"
+#     tags:
+#       - "{{ .Tag }}"
+#       - latest
+#     labels:
+#       org.opencontainers.image.created: "{{ .Date }}"
+#       org.opencontainers.image.title: "{{ .ProjectName }}"
+#       org.opencontainers.image.revision: "{{ .FullCommit }}"
+#       org.opencontainers.image.version: "{{ .Version }}"
+#       org.opencontainers.image.source: "https://{{ .ModulePath }}"
+#       org.opencontainers.image.url: "https://{{ .ModulePath }}"
+#       org.opencontainers.image.description: "Dummy package for GHA tests"
+#       description: "Some description"
+#       maintainer: "me@localhost"
 
-    platforms:
-      - linux/arm64
-      - linux/amd64
+#     bare: true
+#     preserve_import_paths: false
+
+#     platforms:
+#       - linux/arm64
+#       - linux/amd64
 
 checksum:
   name_template: "checksums.txt"
