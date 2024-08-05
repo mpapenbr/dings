@@ -57,7 +57,7 @@ archives:
 #     image_templates:
 #       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
 kos:
-  - repository: "ghcr.io/mpapenbr/{{ .ProjectName }}"
+  - repository: "ghcr.io/mpapenbr/dings"
     tags:
       - "{{ .Version }}"
       - latest
