@@ -33,30 +33,37 @@ archives:
       - goos: windows
         format: zip
 
-dockers:
-  - image_templates:
-      - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
-    build_flag_templates:
-      - "--pull"
-      - "--label=org.opencontainers.image.created={{.Date}}"
-      - "--label=org.opencontainers.image.title={{.ProjectName}}"
-      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
-      - "--label=org.opencontainers.image.version={{.Version}}"
-      - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
-      - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
-      - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
-      - "--label=org.opencontainers.image.licenses=Apache-2.0"
-      - "--label=description=Some description"
-      - "--label=maintainer=me@localhost"
+# dockers:
+#   - image_templates:
+#       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
+#     build_flag_templates:
+#       - "--pull"
+#       - "--label=org.opencontainers.image.created={{.Date}}"
+#       - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#       - "--label=org.opencontainers.image.version={{.Version}}"
+#       - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
+#       - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
+#       - "--label=org.opencontainers.image.description=Dummy package for GHA tests"
+#       - "--label=org.opencontainers.image.licenses=Apache-2.0"
+#       - "--label=description=Some description"
+#       - "--label=maintainer=me@localhost"
+#     use: buildx
 
-      - "--platform=linux/amd64"
-
-    use: buildx
-
-docker_manifests:
-  - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
-    image_templates:
-      - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
+# docker_manifests:
+#   - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
+#     image_templates:
+#       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
+kos:
+  - repository: ghcr.io/mpapenbr/{{ .ProjectName }}
+    tags:
+      - "{{ .Version }}"
+      - latest
+    bare: true
+    preserve_import_paths: false
+    platforms:
+      - linux/arm64
+      - linux/amd64
 
 checksum:
   name_template: "checksums.txt"
