@@ -74,11 +74,59 @@ dockers:
     use: buildx
     goarch: arm64
 
+  - id: web-amd64
+    image_templates:
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}-web:{{ .Tag }}-amd64"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.description=Simple web server"
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
+      - "--label=description=Some description"
+      - "--label=maintainer=me@localhost"
+      - "--platform=linux/amd64"
+    use: buildx
+    dockerfile: Dockerfile.nginx
+    extra_files:
+      - nginx/config
+      - nginx/content
+
+  - id: web-arm64
+    image_templates:
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}-web:{{ .Tag }}-arm64"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--label=org.opencontainers.image.source=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.url=https://{{.ModulePath}}"
+      - "--label=org.opencontainers.image.description=Simple web server"
+      - "--label=org.opencontainers.image.licenses=Apache-2.0"
+      - "--label=description=Some description"
+      - "--label=maintainer=me@localhost"
+      - "--platform=linux/arm64"
+    use: buildx
+    dockerfile: Dockerfile.nginx
+    extra_files:
+      - nginx/config
+      - nginx/content
+
 docker_manifests:
   - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}"
     image_templates:
       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}-amd64"
       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}-arm64"
+  - name_template: "ghcr.io/mpapenbr/{{ .ProjectName }}-web:{{ .Tag }}"
+    image_templates:
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}-web:{{ .Tag }}-amd64"
+      - "ghcr.io/mpapenbr/{{ .ProjectName }}-web:{{ .Tag }}-arm64"
 sboms:
   - artifacts: archive
 # kos:
