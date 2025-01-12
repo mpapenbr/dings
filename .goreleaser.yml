@@ -54,8 +54,14 @@ dockers:
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--label=description=Some description"
       - "--label=maintainer=me@localhost"
+      - "--build-arg=ARCH=amd64"
       - "--platform=linux/amd64"
     use: buildx
+    extra_files:
+      - ext/healthcheck/thc.amd64
+      # if we want the grpc health probe, add it here
+      # - ext/healthcheck/grpc_health_probe.amd64
+
   - image_templates:
       - "ghcr.io/mpapenbr/{{ .ProjectName }}:{{ .Tag }}-arm64"
     build_flag_templates:
@@ -70,9 +76,14 @@ dockers:
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--label=description=Some description"
       - "--label=maintainer=me@localhost"
+      - "--build-arg=ARCH=arm64"
       - "--platform=linux/arm64"
     use: buildx
     goarch: arm64
+    extra_files:
+      - ext/healthcheck/thc.arm64
+      # if we want the grpc health probe, add it here
+      # - ext/healthcheck/grpc_health_probe.arm64
 
   - id: web-amd64
     image_templates:
