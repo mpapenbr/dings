@@ -34,6 +34,7 @@
         "github.vscode-pull-request-github",
         "EditorConfig.EditorConfig",
         "redhat.vscode-yaml",
+        "bierner.markdown-mermaid",
         "cschleiden.vscode-github-actions"
       ]
     }
