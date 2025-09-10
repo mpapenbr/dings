@@ -10,8 +10,8 @@ jobs:
     strategy:
       matrix:
         config:
-          - {src: x86_64, target: amd64}
-          - {src: aarch64, target: arm64}
+          - { src: x86_64, target: amd64 }
+          - { src: aarch64, target: arm64 }
     steps:
       - name: get tiny health check
         run: |
@@ -38,9 +38,6 @@ jobs:
         with:
           name: grpc-${{matrix.config}}
           path: ${{ runner.temp }}/grpc_health_probe.${{matrix.config}}
-
-
-
 
   goreleaser:
     needs:
@@ -85,7 +82,7 @@ jobs:
 
       - uses: actions/setup-go@v6
         with:
-          go-version: "1.24"
+          go-version-file: "./go.mod"
 
       - name: Install syft
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
