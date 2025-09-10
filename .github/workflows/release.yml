@@ -10,8 +10,8 @@ jobs:
     strategy:
       matrix:
         config:
-          - {src: x86_64, target: amd64}
-          - {src: aarch64, target: arm64}
+          - { src: x86_64, target: amd64 }
+          - { src: aarch64, target: arm64 }
     steps:
       - name: get tiny health check
         run: |
@@ -39,9 +39,6 @@ jobs:
           name: grpc-${{matrix.config}}
           path: ${{ runner.temp }}/grpc_health_probe.${{matrix.config}}
 
-
-
-
   goreleaser:
     needs:
       - collect-thc
@@ -51,28 +48,28 @@ jobs:
       contents: write
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Unshallow Fetch
         run: git fetch --prune --unshallow
 
       - name: Download thc health check artifacts (amd64)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: thc-amd64
           path: ext/healthcheck
       - name: Download thc health check artifacts (arm64)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: thc-arm64
           path: ext/healthcheck
       - name: Download grpc health check artifacts (amd64)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: grpc-amd64
           path: ext/healthcheck
       - name: Download grpc health check artifacts (arm64)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: grpc-arm64
           path: ext/healthcheck
@@ -83,9 +80,9 @@ jobs:
       - name: show ext/healthcheck
         run: ls -la ext/healthcheck
 
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@v6
         with:
-          go-version: "1.24"
+          go-version-file: "./go.mod"
 
       - name: Install syft
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin

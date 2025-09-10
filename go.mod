@@ -1,10 +1,10 @@
 module github.com/mpapenbr/dings
 
-go 1.24
+go 1.25
 
 require (
 	github.com/spf13/cobra v1.10.1
-	github.com/spf13/viper v1.20.0
+	github.com/spf13/viper v1.20.1
 	go.uber.org/zap v1.27.0
 )
 
