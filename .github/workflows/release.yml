@@ -17,7 +17,7 @@ jobs:
         run: |
           curl -L https://github.com/dmikusa/tiny-health-checker/releases/download/v0.35.0/thc-${{matrix.config.src}}-unknown-linux-musl -o ${{ runner.temp }}/thc.${{matrix.config.target}}
       - name: Upload health check artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: thc-${{matrix.config.target}}
           path: ${{ runner.temp }}/thc.${{matrix.config.target}}
@@ -34,7 +34,7 @@ jobs:
         run: |
           curl -L https://github.com/grpc-ecosystem/grpc-health-probe/releases/download/v0.4.36/grpc_health_probe-linux-${{matrix.config}} -o ${{ runner.temp }}/grpc_health_probe.${{matrix.config}}
       - name: Upload health check artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: grpc-${{matrix.config}}
           path: ${{ runner.temp }}/grpc_health_probe.${{matrix.config}}
@@ -54,22 +54,22 @@ jobs:
         run: git fetch --prune --unshallow
 
       - name: Download thc health check artifacts (amd64)
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: thc-amd64
           path: ext/healthcheck
       - name: Download thc health check artifacts (arm64)
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: thc-arm64
           path: ext/healthcheck
       - name: Download grpc health check artifacts (amd64)
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: grpc-amd64
           path: ext/healthcheck
       - name: Download grpc health check artifacts (arm64)
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: grpc-arm64
           path: ext/healthcheck
