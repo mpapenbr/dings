@@ -1,7 +1,7 @@
 # This file is used by goreleaser
 ARG BUILDPLATFORM
-ARG TARGETARCH
 FROM --platform=$BUILDPLATFORM alpine:3.22
+ARG TARGETARCH
 
 
 ENTRYPOINT ["/dings"]
