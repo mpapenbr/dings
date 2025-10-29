@@ -54,7 +54,6 @@ dockers:
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--label=description=Some description"
       - "--label=maintainer=me@localhost"
-      - "--build-arg=ARCH=amd64"
       - "--platform=linux/amd64"
     use: buildx
     extra_files:
@@ -76,7 +75,6 @@ dockers:
       - "--label=org.opencontainers.image.licenses=Apache-2.0"
       - "--label=description=Some description"
       - "--label=maintainer=me@localhost"
-      - "--build-arg=ARCH=arm64"
       - "--platform=linux/arm64"
     use: buildx
     goarch: arm64
