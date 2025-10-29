@@ -1,6 +1,6 @@
 # This file is used by goreleaser
-ARG BUILPLATFORM
-FROM --platform=$BUILPLATFORM alpine:3.22
+ARG BUILDPLATFORM
+FROM --platform=$BUILDPLATFORM alpine:3.22
 ARG ARCH
 
 ENTRYPOINT ["/dings"]
