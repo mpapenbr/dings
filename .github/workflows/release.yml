@@ -10,8 +10,8 @@ jobs:
     strategy:
       matrix:
         config:
-          - { src: x86_64, target: amd64 }
-          - { src: aarch64, target: arm64 }
+          - {src: x86_64, target: amd64}
+          - {src: aarch64, target: arm64}
     steps:
       - name: get tiny health check
         run: |
@@ -106,6 +106,7 @@ jobs:
       - name: Release via goreleaser
         uses: goreleaser/goreleaser-action@v6
         with:
+          version: "v2.12.7"
           args: release --release-notes="${{ runner.temp }}/CHANGELOG.md"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
