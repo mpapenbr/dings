@@ -54,13 +54,12 @@ dockers_v2:
       org.opencontainers.image.licenses: "Apache-2.0"
       description: "Some description"
       maintainer: "me@localhost"
+    annotations:
+      "index:org.opencontainers.image.description": "Dummy package for GHA tests"
     platforms:
       - linux/amd64
       - linux/arm64
     sbom: true
-    # flags:
-    #   - "--provenance=false"
-
     extra_files:
       - "ext/healthcheck"
 
@@ -79,12 +78,12 @@ dockers_v2:
       org.opencontainers.image.licenses: "Apache-2.0"
       description: "Some description"
       maintainer: "me@localhost"
+    annotations:
+      "index:org.opencontainers.image.description": "Simple web server"
     platforms:
       - linux/amd64
       - linux/arm64
     sbom: true
-    # flags:
-    #   - "--provenance=false"
     extra_files:
       - nginx/config
       - nginx/content
