@@ -58,8 +58,8 @@ dockers_v2:
       - linux/amd64
       - linux/arm64
     sbom: true
-    flags:
-      - "--provenance=false"
+    # flags:
+    #   - "--provenance=false"
 
     extra_files:
       - "ext/healthcheck"
@@ -83,8 +83,8 @@ dockers_v2:
       - linux/amd64
       - linux/arm64
     sbom: true
-    flags:
-      - "--provenance=false"
+    # flags:
+    #   - "--provenance=false"
     extra_files:
       - nginx/config
       - nginx/content
