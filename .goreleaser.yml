@@ -118,11 +118,11 @@ signs:
 docker_signs:
   - cmd: cosign
     output: true
-    args:
-      - "sign"
-      - "--key=cosign.key"
-      - "${artifact}"
-      - "--yes"
+    # args:
+    #   - "sign"
+    #   - "--key=cosign.key"
+    #   - "${artifact}"
+    #   - "--yes"
 
 release:
   prerelease: auto
