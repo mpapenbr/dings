@@ -83,7 +83,7 @@ jobs:
       - name: show ext/healthcheck
         run: ls -laR ext/healthcheck
 
-      - uses: actions/setup-go@v6
+      - uses: actions/setup-go@v7
         with:
           go-version-file: "./go.mod"
 
