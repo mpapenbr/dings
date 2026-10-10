@@ -8,7 +8,7 @@
 [![Semantic Versioning](https://img.shields.io/badge/versioning-semantic-black?style=for-the-badge&logo=semver)][github-releases]
 [![Pre-Commit Enabled](https://img.shields.io/badge/Pre--Commit-Enabled-blue?style=for-the-badge&logo=pre-commit)][precommit-config]
 [![License](https://img.shields.io/github/license/mpapenbr/dings?color=red&style=for-the-badge)][project-license]
-[![Go v1.20](https://img.shields.io/badge/Go-%20v1.20-black?style=for-the-badge&logo=go)][gomod-file]
+[![Go v1.27](https://img.shields.io/badge/Go-%20v1.27-black?style=for-the-badge&logo=go)][gomod-file]
 
 Dings sample description
 
@@ -70,13 +70,13 @@ would be automatically run every time you use the `git commit` command.
 The pre-commit hooks used by `dings` are located within the
 [`.pre-commit-config.yml`][precommit-config] file. These hooks are configured to run;
 
--   Series of basic checks (JSON, YAML, XML file schema validation)
--   Checks for merge conflicts, and possible leaks of private keys
--   File formatters - whitespace trimming, end-of-file fixers
--   Checks for executable scripts
--   JSON formatters
--   Code Formatters
--   Test-suite
+- Series of basic checks (JSON, YAML, XML file schema validation)
+- Checks for merge conflicts, and possible leaks of private keys
+- File formatters - whitespace trimming, end-of-file fixers
+- Checks for executable scripts
+- JSON formatters
+- Code Formatters
+- Test-suite
 
 To install pre-commit, simply use the Makefile command
 
@@ -292,8 +292,8 @@ requests are merged.
 
 Labels allowed;
 
--   `major`: Affects the `<major>` version number for semantic versioning
--   `minor`, `patch`: Affects the `<patch>` version number for semantic versioning
+- `major`: Affects the `<major>` version number for semantic versioning
+- `minor`, `patch`: Affects the `<patch>` version number for semantic versioning
 
 Whenever a pull request with one of these labels is merged to the `master` branch,
 the corresponding version number will be bumped by one digit!
